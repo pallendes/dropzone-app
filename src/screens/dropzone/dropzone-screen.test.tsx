@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import {render, waitFor, fireEvent, screen} from '@testing-library/react';
-import * as filesService from '../../services/files';
+import * as filesService from 'services/files';
 import DropzoneScreen from '.';
 
 describe('<DropzoneScreen />', () => {

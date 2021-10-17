@@ -1,10 +1,6 @@
-import {Button, Grid} from '@mui/material';
 import React from 'react';
-
-interface DropzoneUploadButtonProps {
-  onUploadFilesClick: () => void;
-  disabled: boolean;
-}
+import {Button, Grid} from '@mui/material';
+import {DropzoneUploadButtonProps} from './types';
 
 const DropzoneUploadButton: React.FC<DropzoneUploadButtonProps> = ({
   onUploadFilesClick,

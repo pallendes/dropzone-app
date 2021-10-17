@@ -12,12 +12,11 @@ import AppBar from 'components/app-bar';
 import {useDropzone} from 'react-dropzone';
 import FilesList from 'components/files-list';
 import * as fileService from 'services/files';
-import {DropzoneFile} from './types';
 import DropzoneLoading from 'components/dropzone-loading/dropzone-loading';
 import DropzoneUploadButton from 'components/dropzone-upload-button/dropzone-upload-button';
 
 const App: React.FC = () => {
-  const [files, setFiles] = useState<Array<DropzoneFile>>([]);
+  const [files, setFiles] = useState<Array<File>>([]);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [showNotification, setShowNotification] = useState<{
     open: boolean;
@@ -26,12 +25,7 @@ const App: React.FC = () => {
 
   const onDrop = useCallback(
     (acceptedFiles) => {
-      const dropzoneFiles = acceptedFiles.map((file: File) => ({
-        file,
-        status: 'none',
-      }));
-
-      setFiles([...files, ...dropzoneFiles]);
+      setFiles([...files, ...acceptedFiles]);
     },
     [files]
   );
@@ -42,7 +36,7 @@ const App: React.FC = () => {
 
     try {
       await Promise.all(
-        files.map(async ({file}) => {
+        files.map(async (file) => {
           await fileService.upload(file);
 
           onFileRemoved(file);
@@ -57,7 +51,7 @@ const App: React.FC = () => {
   };
 
   const onFileRemoved = (removedFile: File) => {
-    const index = files.findIndex(({file}) => file.name === removedFile.name);
+    const index = files.findIndex((file) => file.name === removedFile.name);
 
     files.splice(index, 1);
     setFiles([...files]);

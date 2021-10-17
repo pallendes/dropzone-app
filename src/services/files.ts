@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
+
 const toBase64 = (file: File) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -12,7 +14,7 @@ export const upload = async (file: File): Promise<void> => {
   try {
     const base64File = await toBase64(file);
 
-    await axios.post('https://jsonplaceholder.typicode.com/posts', {
+    await axios.post(`${BASE_URL}/posts`, {
       file: base64File,
     });
   } catch (e) {

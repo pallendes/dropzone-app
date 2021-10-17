@@ -1,16 +1,12 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
 import FilesList from '.';
-import {DropzoneFile} from 'screens/dropzone/types';
 
 describe('files-list', () => {
-  const files: Array<DropzoneFile> = [
-    {
-      file: new File([JSON.stringify({ping: true})], 'a-file.json', {
-        type: 'application/json',
-      }),
-      status: 'none',
-    },
+  const files: Array<File> = [
+    new File([JSON.stringify({ping: true})], 'a-file.json', {
+      type: 'application/json',
+    }),
   ];
 
   it('should render the items', () => {

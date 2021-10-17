@@ -10,14 +10,8 @@ import {
 import {TransitionGroup} from 'react-transition-group';
 import DescriptionIcon from '@mui/icons-material/Description';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {DropzoneFile} from 'screens/dropzone/types';
 import {getSizeText} from './utils';
-
-interface FilesListProps {
-  files: Array<DropzoneFile>;
-  onFileRemoved: (file: File) => void;
-  isUplaoding: boolean;
-}
+import {FilesListProps} from './types';
 
 const FilesList: React.FC<FilesListProps> = ({
   files,
@@ -26,8 +20,15 @@ const FilesList: React.FC<FilesListProps> = ({
 }) => {
   return (
     <Grid container spacing={2} component={TransitionGroup}>
-      {files.map(({file}) => (
-        <Grid xs={12} md={6} lg={4} item component={Collapse} key={file.name}>
+      {files.map((file, i) => (
+        <Grid
+          xs={12}
+          md={6}
+          lg={4}
+          item
+          component={Collapse}
+          key={`${file.name}-${i}`}
+        >
           <Paper
             elevation={0}
             variant="outlined"

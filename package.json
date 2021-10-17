@@ -34,7 +34,7 @@
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
     "prepare": "husky install",
-    "pretty-quick": "prettya-quick"
+    "pretty-quick": "pretty-quick"
   },
   "browserslist": {
     "production": [

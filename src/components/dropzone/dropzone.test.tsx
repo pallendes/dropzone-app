@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import Dropzone from '.';
 import {createMatchMedia} from 'test-utils';
+import Dropzone from '.';
 
 describe('<Dropzone />', () => {
   beforeEach(() => {
