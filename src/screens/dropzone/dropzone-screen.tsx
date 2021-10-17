@@ -7,18 +7,18 @@ import {
   Grid,
   Snackbar,
 } from '@mui/material';
+import {useDropzone} from 'react-dropzone';
 import Dropzone from 'components/dropzone';
 import AppBar from 'components/app-bar';
-import {useDropzone} from 'react-dropzone';
 import FilesList from 'components/files-list';
-import * as fileService from 'services/files';
 import DropzoneLoading from 'components/dropzone-loading/dropzone-loading';
 import DropzoneUploadButton from 'components/dropzone-upload-button/dropzone-upload-button';
+import * as fileService from 'services/files';
 
 const App: React.FC = () => {
   const [files, setFiles] = useState<Array<File>>([]);
   const [isUploading, setIsUploading] = useState<boolean>(false);
-  const [showNotification, setShowNotification] = useState<{
+  const [notification, setNotification] = useState<{
     open: boolean;
     severity: AlertColor;
   }>({open: false, severity: 'success'});
@@ -42,9 +42,9 @@ const App: React.FC = () => {
           onFileRemoved(file);
         })
       );
-      setShowNotification({open: true, severity: 'success'});
+      setNotification({open: true, severity: 'success'});
     } catch (e) {
-      setShowNotification({open: true, severity: 'error'});
+      setNotification({open: true, severity: 'error'});
     }
 
     setIsUploading(false);
@@ -58,7 +58,7 @@ const App: React.FC = () => {
   };
 
   const handleNotificationClose = () => {
-    setShowNotification({open: false, severity: 'success'});
+    setNotification({open: false, severity: 'success'});
   };
 
   return (
@@ -66,17 +66,17 @@ const App: React.FC = () => {
       <CssBaseline />
       <AppBar />
       <Snackbar
-        open={showNotification.open}
+        open={notification.open}
         autoHideDuration={3000}
         onClose={handleNotificationClose}
         anchorOrigin={{vertical: 'top', horizontal: 'center'}}
       >
         <Alert
           onClose={handleNotificationClose}
-          severity={showNotification.severity}
+          severity={notification.severity}
           sx={{width: '100%'}}
         >
-          {showNotification.severity === 'success'
+          {notification.severity === 'success'
             ? 'Files uploaded'
             : 'An error has ocurred, please try again'}
         </Alert>

@@ -29,7 +29,7 @@ const DropzoneLoading: React.FC = () => {
           direction="column"
         >
           <Grid item xs={4}>
-            <CircularProgress color="secondary" sx={{fontSize: 48}} />
+            <CircularProgress color="secondary" size={48} />
           </Grid>
           <Grid item xs={4}>
             <Typography variant="h6" component="span">
