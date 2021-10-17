@@ -1,12 +1,14 @@
+import {ColorModeProvider} from 'context/color-mode';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import DropzoneScreen from './screens/dropzone';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ColorModeProvider>
+      <DropzoneScreen />
+    </ColorModeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
